@@ -11,6 +11,9 @@ const { MainDialog } = require('../../dialogs/mainDialog');
 const { BookingDialog } = require('../../dialogs/bookingDialog');
 const assert = require('assert');
 
+
+//TODO change tests to be on my stuff
+
 /**
  * A mock FlightBookingRecognizer for our main dialog tests that takes
  * a mock luis result and can set as isConfigured === false.

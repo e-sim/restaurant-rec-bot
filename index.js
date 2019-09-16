@@ -56,7 +56,7 @@ const memoryStorage = new MemoryStorage();
 const conversationState = new ConversationState(memoryStorage);
 const userState = new UserState(memoryStorage);
 
-// If configured, pass in the FlightBookingRecognizer.  (Defining it externally allows it to be mocked for tests)
+// If configured, pass in the RestaurantRecognizer.  (Defining it externally allows it to be mocked for tests)
 const { LuisAppId, LuisAPIKey, LuisAPIHostName } = process.env;
 const luisConfig = { applicationId: LuisAppId, endpointKey: LuisAPIKey, endpoint: `https://${ LuisAPIHostName }` };
 
