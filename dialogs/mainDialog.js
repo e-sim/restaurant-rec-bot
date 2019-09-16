@@ -91,7 +91,7 @@ class MainDialog extends ComponentDialog {
             // await this.showWarningForUnsupportedCities(stepContext.context, fromEntities, toEntities);
             // TODO do this for unsupported cuisines?  
 
-            // Initialize BookingDetails with any entities we may have found in the response.
+            // Initialize recDetails with any entities we may have found in the response.
             recDetails.cuisine = cuisineEntity;
             recDetails.price = priceEntity;
             recDetails.delivery = deliveryEntity;
@@ -124,7 +124,7 @@ class MainDialog extends ComponentDialog {
 
 
             // I don't actually need the below because I already asked for confirmation
-            const msg = `I have that you're looking for a ${ JSON.stringify(result.price) } ${ result.cuisine.cuisine } for ${ JSON.stringify(result.delivery) }.`;
+            const msg = `I found you something!`;
 
 
             await stepContext.context.sendActivity(msg, msg, InputHints.IgnoringInput);
