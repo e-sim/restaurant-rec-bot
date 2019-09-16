@@ -1,0 +1,45 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body":[
+      {
+          "type": "Image",
+          "url": "https://images.squarespace-cdn.com/content/v1/5a85faba010027c3e21d13a4/1529532421513-SUBDLQS5NXQA359WTBH0/ke17ZwdGBToddI8pDm48kBL7y0DpH_e0bbX7enFn0u57gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UT4ke-2faLbDJ2EQYXZquaaYAmln24LeHvojPJ-RAjfURBpFeAJxHLqEa5Otf4mhGw/P1144109-3.jpg?format=1000w",
+          "size": "stretch"
+      },
+      {
+          "type": "TextBlock",
+          "spacing": "medium",
+          "size": "default",
+          "weight": "bolder",
+          "text": "Rancho Bravo Tacos",
+          "wrap": true,
+          "maxLines": 0
+      },
+      {
+          "type": "TextBlock",
+          "text": "4.3 ★★★★ · $ · Mexican",
+          "isSubtle": true,
+          "spacing": "none"
+      },
+      {
+          "type": "TextBlock",
+          "text": "211 NE 45th St.\nSeattle, WA 98105",
+          "size": "small",
+          "wrap": true
+      }      
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "Open restaurant website",
+      "url": "https://www.ranchobravotacos.com/"
+    },
+    {
+        "type": "Action.OpenUrl",
+        "title": "Open in GrubHub",
+        "url": "https://www.grubhub.com/restaurant/rancho-bravo-tacos-211-ne-45th-st-seattle/855553?"
+    }
+  ]
+}

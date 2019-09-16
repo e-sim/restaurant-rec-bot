@@ -1,0 +1,45 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body":[
+      {
+          "type": "Image",
+          "url": "http://www.tasteofindiaseattle.com/home/Albums/Album1/Large/images/Large-a-11.jpg",
+          "size": "stretch"
+      },
+      {
+          "type": "TextBlock",
+          "spacing": "medium",
+          "size": "default",
+          "weight": "bolder",
+          "text": "Taste of India",
+          "wrap": true,
+          "maxLines": 0
+      },
+      {
+          "type": "TextBlock",
+          "text": "4.5 ★★★★ · $$ · Indian",
+          "isSubtle": true,
+          "spacing": "none"
+      },
+      {
+          "type": "TextBlock",
+          "text": "5517 Roosevelt Way NE\nSeattle, WA 98105",
+          "size": "small",
+          "wrap": true
+      }      
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "Open restaurant website",
+      "url": "http://www.tasteofindiaseattle.com/home/dinner.html"
+    },
+    {
+        "type": "Action.OpenUrl",
+        "title": "Open in GrubHub",
+        "url": "https://www.grubhub.com/restaurant/taste-of-india-5517-roosevelt-way-ne-seattle/347120"
+    }
+  ]
+}
