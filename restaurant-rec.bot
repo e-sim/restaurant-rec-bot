@@ -1,0 +1,28 @@
+{
+    "name": "restaurant-rec",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages",
+            "id": "6571fb90-d58b-11e9-9fd2-236e5ea5deda",
+            "name": "http://localhost:3978/api/messages",
+            "channelService": ""
+        },
+        {
+            "type": "luis",
+            "appId": "ebf1bd53-a9d6-4aec-b66e-0f32c659d938",
+            "authoringKey": "17e0455e57414b2ead01bb86188a4de0",
+            "name": "RestaurantRec",
+            "region": "westus",
+            "version": "0.1",
+            "id": "254"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "C:\\Users\\Erica\\Documents\\my_code\\bots_all_the_bots\\restaurant-rec-bot\\restaurant-rec.bot",
+    "overrides": null
+}
