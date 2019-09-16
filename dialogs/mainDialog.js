@@ -150,7 +150,7 @@ class MainDialog extends ComponentDialog {
               });
               break;
             default:
-              const messageText = `I'm sorry, I couldn't find any ${ JSON.stringify(cardName) } restaurants near you.`;
+              const messageText = `I'm sorry, I couldn't find any ${ cardName } restaurants with your specifications near you.`;
               await stepContext.context.sendActivity(messageText, messageText, InputHints.IgnoringInput);
           }
         }
