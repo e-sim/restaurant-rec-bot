@@ -39,6 +39,7 @@ class RecommendDialog extends CancelAndHelpDialog {
     async cuisineStep(stepContext) {
         const recDetails = stepContext.options;
 
+        // the reason "cuisine" is doubled is because there is always an object with label "cuisine" and then as its value(?) it has another object that is cuisine:value, same for all below
         if (!recDetails.cuisine.cuisine) {
             const messageText = 'What kind of food do you want?';
             const msg = MessageFactory.text(messageText, messageText, InputHints.ExpectingInput);
@@ -71,7 +72,7 @@ class RecommendDialog extends CancelAndHelpDialog {
         const recDetails = stepContext.options;
 
         // Capture the results of the previous step
-        recDetails.price.price = stepContext.result;
+        recDetails.price = stepContext.result;
         if (!recDetails.delivery.delivery) {
             const messageText = 'Would you like delivery?';
             const msg = MessageFactory.text(messageText, 'Would you like delivery?', InputHints.ExpectingInput);
@@ -88,9 +89,35 @@ class RecommendDialog extends CancelAndHelpDialog {
         const recDetails = stepContext.options;
 
         // Capture the results of the previous step
-        recDetails.delivery.delivery = stepContext.result;
+        recDetails.delivery = stepContext.result;
+
+        //let priceValue = JSON.stringify(recDetails.price);
+        //let deliveryValue = JSON.stringify(recDetails.delivery);
+        //if (!recDetails.price.price.value) {
+          //  priceValue = recDetails.price.price;
+        //} else {
+          //  priceValue = recDetails.price.price.value;
+        //}
+        //if (!recDetails.delivery.delivery.value) {
+          //  deliveryValue = JSON.stringify(deliveryValue = recDetails.delivery);
+        //} else {
+          //  deliveryValue = JSON.stringify(recDetails.delivery.delivery);
+        //}
+
+        let priceValue = JSON.stringify(recDetails.price);
+        if (recDetails.price.value) {
+            priceValue = recDetails.price.value; }
+        //} else {
+          //  priceValue = recDetails.price.price.value;
+        //}
+
+        let deliveryValue = JSON.stringify(recDetails.delivery);
+        if (recDetails.delivery.value) {
+            deliveryValue = recDetails.delivery.value;
+        }
+
         // so, I think that the reason cuisine is different from the others is because it's not the button type
-        const messageText = `Please confirm, I have you looking for a ${ recDetails.price.price.value } ${ recDetails.cuisine.cuisine } restaurant for ${ recDetails.delivery.delivery.value }. Is this correct?`;
+        const messageText = `Please confirm, I have you looking for a ${ priceValue } ${ recDetails.cuisine } restaurant for ${ deliveryValue }. Is this correct?`;
         const msg = MessageFactory.text(messageText, messageText, InputHints.ExpectingInput);
 
         // Offer a YES/NO prompt.
