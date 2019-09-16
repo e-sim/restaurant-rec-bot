@@ -4,27 +4,9 @@
   "version": "1.0",
   "body": [
     {
-      "type": "ImageSet",
-      "imageSize": "medium",
-      "images": [
-        {
-          "type": "Image",
-          "url": "https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content9442.jpg"
-        },
-        {
-          "type": "Image",
-          "url": "https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/10/Saltwater-Halal-Restaurants-Singapore-1024x731.png"
-        },
-        {
-          "type": "Image",
-          "url": "https://idealsoftware.co.za/wp-content/uploads/2015/08/restaurant-food-4-1024x914.jpg"
-        },
-        {
-          "type": "Image",
-          "url": "https://cdn.insteading.com/wp-content/uploads/2014/12/shutterstock_95710771-600x400.jpg"
-        }
-      ]
-
+      "type": "Image",
+      "size": "stretch",
+      "url": "https://cdn.insteading.com/wp-content/uploads/2014/12/shutterstock_95710771-600x400.jpg"
     },
     {
       "type": "TextBlock",

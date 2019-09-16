@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { TimexProperty } = require('@microsoft/recognizers-text-data-types-timex-expression');
-const { MessageFactory, InputHints } = require('botbuilder');
+const { MessageFactory, InputHints, CardFactory } = require('botbuilder');
 const { LuisRecognizer } = require('botbuilder-ai');
 const { ComponentDialog, DialogSet, DialogTurnStatus, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs');
+const MexicanCard = require("../resources/mexicanCard.json");
+const IndianCard = require("../resources/indianCard.json")
 
 const MAIN_WATERFALL_DIALOG = 'mainWaterfallDialog';
 
@@ -59,7 +60,7 @@ class MainDialog extends ComponentDialog {
             return await stepContext.next();
         }
 
-        const messageText = stepContext.options.restartMsg ? stepContext.options.restartMsg : 'Hello! What kind of restaurant are you looking for?';
+        const messageText = stepContext.options.restartMsg ? stepContext.options.restartMsg : 'What kind of restaurant are you looking for?';
         const promptMessage = MessageFactory.text(messageText, messageText, InputHints.ExpectingInput);
         return await stepContext.prompt('TextPrompt', { prompt: promptMessage });
     }
@@ -116,18 +117,42 @@ class MainDialog extends ComponentDialog {
      * This is the final step in the main waterfall dialog.
      */
     async finalStep(stepContext) {
-        // If the child dialog ("bookingDialog") was cancelled or the user failed to confirm, the Result here will be null.
+
         if (stepContext.result) {
             const result = stepContext.result;
 
             // This is where calls to the booking AOU service or database would go. <----- NOTE!!!
+            let cardName = result.cuisine;
+            if (result.cuisine.cuisine){
+              cardName = result.cuisine.cuisine
+            }
 
 
-            // I don't actually need the below because I already asked for confirmation
-            const msg = `I found you something!`;
+            switch (cardName) {
+            case "Indian":
+              const indianCard = CardFactory.adaptiveCard(IndianCard);
+            
+
+            //const msg = `I found you something!`;
 
 
-            await stepContext.context.sendActivity(msg, msg, InputHints.IgnoringInput);
+            //await stepContext.context.sendActivity(msg, msg, InputHints.IgnoringInput);
+              await stepContext.context.sendActivity({
+              text: "I found you something!",
+              attachments: [indianCard]
+              });
+              break;
+            case "tacos":
+              const mexicanCard = CardFactory.adaptiveCard(MexicanCard);
+              await stepContext.context.sendActivity({
+              text: "I found you something!",
+              attachments: [mexicanCard]
+              });
+              break;
+            default:
+              const messageText = `I'm sorry, I couldn't find any ${ JSON.stringify(cardName) } restaurants near you.`;
+              await stepContext.context.sendActivity(messageText, messageText, InputHints.IgnoringInput);
+          }
         }
 
         // Restart the main dialog with a different message the second time around

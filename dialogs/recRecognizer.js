@@ -28,6 +28,12 @@ class RestaurantRecRecognizer {
         if (result.entities.$instance.Cuisine){
             cuisineValue = result.entities.$instance.Cuisine[0].text;
         }
+        //if (result.entities.Cuisine) {
+          //  cuisineValue = JSON.stringify(result.entities.Cuisine[0]);
+        //} else {
+          //  cuisineValue = JSON.stringify(result.entities);
+        //}
+
         return { cuisine: cuisineValue };
     }
 

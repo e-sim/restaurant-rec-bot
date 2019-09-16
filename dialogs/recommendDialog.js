@@ -106,18 +106,31 @@ class RecommendDialog extends CancelAndHelpDialog {
 
         let priceValue = JSON.stringify(recDetails.price);
         if (recDetails.price.value) {
-            priceValue = recDetails.price.value; }
-        //} else {
-          //  priceValue = recDetails.price.price.value;
-        //}
+            priceValue = recDetails.price.value;
+        } else {
+            priceValue = recDetails.price.price;
+        }
 
         let deliveryValue = JSON.stringify(recDetails.delivery);
         if (recDetails.delivery.value) {
             deliveryValue = recDetails.delivery.value;
+        } else {
+            deliveryValue = recDetails.delivery.delivery;
+        }
+
+        let cuisineValue = JSON.stringify(recDetails.cuisine);
+
+        if (recDetails.cuisine.cuisine) {
+            cuisineValue = recDetails.cuisine.cuisine;
+        } else {
+            cuisineValue = recDetails.cuisine;
+        }
+        if (cuisineValue == "tacos") {
+            cuisineValue = "Mexican";
         }
 
         // so, I think that the reason cuisine is different from the others is because it's not the button type
-        const messageText = `Please confirm, I have you looking for a ${ priceValue } ${ recDetails.cuisine } restaurant for ${ deliveryValue }. Is this correct?`;
+        const messageText = `Please confirm, I have you looking for a ${ priceValue } ${ cuisineValue } restaurant for ${ deliveryValue }. Is this correct?`;
         const msg = MessageFactory.text(messageText, messageText, InputHints.ExpectingInput);
 
         // Offer a YES/NO prompt.
