@@ -110,45 +110,22 @@ class MainDialog extends ComponentDialog {
         return await stepContext.next();
     }
 
-    /**
-     * Shows a warning if the requested From or To cities are recognized as entities but they are not in the Airport entity list.
-     * In some cases LUIS will recognize the From and To composite entities as a valid cities but the From and To Airport values
-     * will be empty if those entity values can't be mapped to a canonical item in the Airport.
-     */
-    async showWarningForUnsupportedCities(context, fromEntities, toEntities) {
-        const unsupportedCities = [];
-        if (fromEntities.from && !fromEntities.airport) {
-            unsupportedCities.push(fromEntities.from);
-        }
 
-        if (toEntities.to && !toEntities.airport) {
-            unsupportedCities.push(toEntities.to);
-        }
-
-        if (unsupportedCities.length) {
-            const messageText = `Sorry but the following airports are not supported: ${ unsupportedCities.join(', ') }`;
-            await context.sendActivity(messageText, messageText, InputHints.IgnoringInput);
-        }
-    }
 
     /**
      * This is the final step in the main waterfall dialog.
-     * It wraps up the sample "book a flight" interaction with a simple confirmation.
      */
     async finalStep(stepContext) {
         // If the child dialog ("bookingDialog") was cancelled or the user failed to confirm, the Result here will be null.
         if (stepContext.result) {
             const result = stepContext.result;
-            // Now we have all the booking details.
 
             // This is where calls to the booking AOU service or database would go. <----- NOTE!!!
-            // UNLESS I ask for confirmation 
 
-            // If the call to the booking service was successful tell the user.
-            //const timeProperty = new TimexProperty(result.travelDate);
-            //const travelDateMsg = timeProperty.toNaturalLanguage(new Date(Date.now()));
-            const msg = `I have that you're looking for a ${ result.price } ${ result.cuisine } for ${ result.delivery }.`;
-            // TODO! ask for confirmation???? --- probably would want a confirmation step before final one
+
+            // I don't actually need the below because I already asked for confirmation
+            const msg = `I have that you're looking for a ${ JSON.stringify(result.price) } ${ result.cuisine.cuisine } for ${ JSON.stringify(result.delivery) }.`;
+
 
             await stepContext.context.sendActivity(msg, msg, InputHints.IgnoringInput);
         }

@@ -34,7 +34,6 @@ class RestaurantRecRecognizer {
     getPriceEntity(result){
         let priceValue;
         if (result.entities.$instance.Price){
-            // TODO check if Price as the result entity is capitalized or not
             priceValue = result.entities.$instance.Price[0].text;
         }
         return { price: priceValue };
@@ -43,35 +42,12 @@ class RestaurantRecRecognizer {
     getDeliveryEntity(result){
         let deliveryValue;
         if (result.entities.$instance.Delivery){
-            // TODO check if Delivery as the result entity is capitalized or not
             deliveryValue = result.entities.$instance.Delivery[0].text;
         }
         return { delivery: deliveryValue };
     }
 
-    getFromEntities(result) {
-        let fromValue, fromAirportValue;
-        if (result.entities.$instance.From) {
-            fromValue = result.entities.$instance.From[0].text;
-        }
-        if (fromValue && result.entities.From[0].Airport) {
-            fromAirportValue = result.entities.From[0].Airport[0][0];
-        }
 
-        return { from: fromValue, airport: fromAirportValue };
-    }
-
-    getToEntities(result) {
-        let toValue, toAirportValue;
-        if (result.entities.$instance.To) {
-            toValue = result.entities.$instance.To[0].text;
-        }
-        if (toValue && result.entities.To[0].Airport) {
-            toAirportValue = result.entities.To[0].Airport[0][0];
-        }
-
-        return { to: toValue, airport: toAirportValue };
-    }
 
     /**
      * This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.

@@ -39,7 +39,7 @@ class RecommendDialog extends CancelAndHelpDialog {
     async cuisineStep(stepContext) {
         const recDetails = stepContext.options;
 
-        if (!recDetails.cuisine) {
+        if (!recDetails.cuisine.cuisine) {
             const messageText = 'What kind of food do you want?';
             const msg = MessageFactory.text(messageText, messageText, InputHints.ExpectingInput);
             return await stepContext.prompt(TEXT_PROMPT, { prompt: msg });
@@ -55,11 +55,11 @@ class RecommendDialog extends CancelAndHelpDialog {
 
         // Capture the response to the previous step's prompt
         recDetails.cuisine = stepContext.result;
-        if (!recDetails.price) {
+        if (!recDetails.price.price) {
             const messageText = 'What price point are you looking for?';
             const msg = MessageFactory.text(messageText, 'What price point are you looking for?', InputHints.ExpectingInput);
             return await stepContext.prompt(CHOICE_PROMPT, { prompt: msg,
-            choices: ChoiceFactory.toChoices(["cheap", "moderate", "average"]) });
+            choices: ChoiceFactory.toChoices(["cheap", "reasonably priced", "expensive"]) });
         }
         return await stepContext.next(recDetails.price);
     }
@@ -71,8 +71,8 @@ class RecommendDialog extends CancelAndHelpDialog {
         const recDetails = stepContext.options;
 
         // Capture the results of the previous step
-        recDetails.price = stepContext.result;
-        if (!recDetails.delivery) {
+        recDetails.price.price = stepContext.result;
+        if (!recDetails.delivery.delivery) {
             const messageText = 'Would you like delivery?';
             const msg = MessageFactory.text(messageText, 'Would you like delivery?', InputHints.ExpectingInput);
             return await stepContext.prompt(CHOICE_PROMPT, { prompt: msg,
@@ -88,8 +88,9 @@ class RecommendDialog extends CancelAndHelpDialog {
         const recDetails = stepContext.options;
 
         // Capture the results of the previous step
-        recDetails.delivery = stepContext.result;
-        const messageText = `Please confirm, I have you looking for a ${ recDetails.price.value } ${ recDetails.cuisine.value } restaurant for ${ recDetails.delivery.value }. Is this correct?`;
+        recDetails.delivery.delivery = stepContext.result;
+        // so, I think that the reason cuisine is different from the others is because it's not the button type
+        const messageText = `Please confirm, I have you looking for a ${ recDetails.price.price.value } ${ recDetails.cuisine.cuisine } restaurant for ${ recDetails.delivery.delivery.value }. Is this correct?`;
         const msg = MessageFactory.text(messageText, messageText, InputHints.ExpectingInput);
 
         // Offer a YES/NO prompt.
